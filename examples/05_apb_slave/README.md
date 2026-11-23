@@ -2,10 +2,7 @@
 
 **Concepts:** bus protocol phases (SETUP → ACCESS) · protocol tasks · register mirror model · data checks vs protocol checks
 
-```bash
-make
-# PASS: 8 checks, 0 errors
-```
+Run it on EDA Playground with Cadence Xcelium (see `../../docs/07_eda_playground.md`): DUT `apb_slave.v` in Design, `tb_apb_slave.v` in Testbench, Run — expect `PASS: 8 checks, 0 errors` in the log. Local fallback: `make` (Icarus).
 
 Data checking alone is not protocol verification. A slave can return the
 right data while violating the protocol (sampling in SETUP, changing

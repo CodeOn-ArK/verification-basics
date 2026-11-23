@@ -4,10 +4,7 @@
 
 Run it:
 
-```bash
-make
-# PASS: 207 checks, 0 errors
-```
+Run it on EDA Playground with Cadence Xcelium (see `../../docs/07_eda_playground.md`): DUT `alu.v` in Design, `tb_alu.v` in Testbench, Run — expect `PASS: 207 checks, 0 errors` in the log. Local fallback: `make` (Icarus).
 
 ## Try this
 

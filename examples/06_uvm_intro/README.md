@@ -26,8 +26,11 @@ independent model) is exactly the one from example 01.
 
 ## Running it
 
-Needs a UVM-capable simulator (Questa, VCS, Xcelium; Verilator does not
-ship UVM):
+Primary: EDA Playground with Cadence Xcelium and the UVM 1.2 library
+selected (see `../../docs/07_eda_playground.md` for the per-file setup).
+
+It also runs on any UVM-capable simulator (Questa, VCS, Xcelium;
+Verilator does not ship UVM):
 
 ```bash
 # Questa example:

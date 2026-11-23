@@ -2,10 +2,7 @@
 
 **Concepts:** clocked checking · reset (including mid-run) · state-dependent behaviour · pause/freeze
 
-```bash
-make
-# PASS: 16 checks, 0 errors
-```
+Run it on EDA Playground with Cadence Xcelium (see `../../docs/07_eda_playground.md`): DUT `counter_fsm.v` in Design, `tb_counter_fsm.v` in Testbench, Run — expect `PASS: 16 checks, 0 errors` in the log. Local fallback: `make` (Icarus).
 
 ## Try this
 

@@ -2,10 +2,7 @@
 
 **Concepts:** reference queue · scoreboard checking every cycle · full/empty boundaries · write-while-full / read-while-empty · simultaneous read+write · random phase with a model keeping score
 
-```bash
-make
-# PASS: 522 checks, 0 errors
-```
+Run it on EDA Playground with Cadence Xcelium (see `../../docs/07_eda_playground.md`): DUT `sync_fifo.v` in Design, `tb_sync_fifo.v` in Testbench, Run — expect `PASS: 522 checks, 0 errors` in the log. Local fallback: `make` (Icarus).
 
 The important design decision is in the TB, not the DUT: the model
 applies the *same acceptance rule the spec states* (a write counts only

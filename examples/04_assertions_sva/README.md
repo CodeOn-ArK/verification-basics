@@ -2,8 +2,11 @@
 
 **Concepts:** concurrent assertions · `|->` vs `|=>` · `$past` · `disable iff` · cover properties and vacuity
 
-Needs a SystemVerilog simulator — Icarus Verilog does not support
-concurrent SVA. Use Verilator, Questa, VCS, or Xcelium:
+Primary: EDA Playground with Cadence Xcelium (see
+`../../docs/07_eda_playground.md`) — assertions run in-simulation,
+no extra setup. Icarus Verilog does not support concurrent SVA.
+Locally, any full SystemVerilog simulator works (Verilator, Questa,
+VCS, or Xcelium):
 
 ```bash
 # example (Questa):

@@ -29,6 +29,7 @@ Verification is learned by catching bugs, not by reading about them.
 - [`docs/04_assertions_and_formal_intro.md`](docs/04_assertions_and_formal_intro.md) — SVA and where formal fits
 - [`docs/05_debugging.md`](docs/05_debugging.md) — a workflow for when a test fails
 - [`docs/06_checklist.md`](docs/06_checklist.md) — verification plan + sign-off checklist you can copy
+- [`docs/07_eda_playground.md`](docs/07_eda_playground.md) — running every example on EDA Playground with Cadence Xcelium
 
 ## Exercises
 
@@ -37,17 +38,30 @@ write the checker that catches the bug, *then* look at the solution.
 
 ## Running the examples
 
-Most examples run with the open-source [Icarus Verilog](https://steveicarus.github.io/iverilog/):
+Primary flow: **[EDA Playground](https://www.edaplayground.com) with
+Cadence Xcelium** — no install, full SystemVerilog, SVA, and UVM.
+See [`docs/07_eda_playground.md`](docs/07_eda_playground.md) for the
+exact steps per example.
 
-```bash
-cd examples/01_alu_self_checking
-make        # compiles, runs, prints PASS/FAIL
-make wave   # optional: dump waves (open with GTKWave / Surfer)
-```
+In short, for each example:
 
-Examples 04 and 06 use fuller SystemVerilog (SVA / UVM) and need a
-SystemVerilog simulator (Verilator, Questa, VCS, or Xcelium). Each folder's
-README says exactly what it needs and what output to expect.
+1. Language: **Verilog / SystemVerilog**
+2. Tools: **Cadence Xcelium** (the Cadence simulator on EDA Playground —
+   note: Cadence *Virtuoso* is a schematic/layout tool, not a logic
+   simulator, so the simulator you pick on EDA Playground is Xcelium)
+3. Paste the DUT file(s) in the **Design** window, the testbench in the
+   **Testbench** window, tick **EPWave** if you want waveforms, hit **Run**
+4. Look for the `PASS: … checks, 0 errors` line in the log
+
+For example 06 (UVM), also pick a **UVM library** (UVM 1.2 / IEEE
+1800.2-2017). For example 04 (SVA), Xcelium handles the assertions
+directly — no extra setup.
+
+Local fallback: examples 01, 02, 03 and 05 also run with
+[Icarus Verilog](https://steveicarus.github.io/iverilog/) via the
+`Makefile` in each folder (`make` compiles, runs, prints PASS/FAIL).
+Examples 04 and 06 need a full SystemVerilog simulator and are
+not Icarus-compatible.
 
 ## Layout
 
