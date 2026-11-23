@@ -1,0 +1,7 @@
+*.vvp
+*.vcd
+*.log
+work/
+transcript
+__pycache__/
+.DS_Store
