@@ -15,7 +15,7 @@ module tb_counter_fsm;
     counter_fsm dut (.clk(clk), .rst_n(rst_n), .start(start), .pause(pause),
                      .up(up), .terminal(terminal), .count(count), .done(done));
 
-    task expect;
+    task check_state;
         input [3:0] exp_count;
         input       exp_done;
         begin
@@ -31,13 +31,13 @@ module tb_counter_fsm;
     task step;  // advance one clock, then check
         input [3:0] exp_count;
         input       exp_done;
-        begin @(posedge clk); #1; expect(exp_count, exp_done); end
+        begin @(posedge clk); #1; check_state(exp_count, exp_done); end
     endtask
 
     initial begin
         // Reset behaviour: outputs known, count 0.
         repeat (2) @(posedge clk); #1;
-        expect(4'd0, 1'b0);
+        check_state(4'd0, 1'b0);
         rst_n = 1;
 
         // IDLE holds at 0 until start.
@@ -58,7 +58,7 @@ module tb_counter_fsm;
         // Mid-run reset: the case directed tests forget.
         start = 1; step(4'd0, 1'b0); start = 0;
         step(4'd1, 1'b0);
-        rst_n = 0; #1; expect(4'd0, 1'b0);
+        rst_n = 0; #1; check_state(4'd0, 1'b0);
         rst_n = 1; step(4'd0, 1'b0);
 
         if (errors == 0) $display("PASS: %0d checks, 0 errors", checks);

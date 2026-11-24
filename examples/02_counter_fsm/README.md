@@ -4,6 +4,13 @@
 
 Run it on EDA Playground with Cadence Xcelium (see `../../docs/07_eda_playground.md`): DUT `counter_fsm.v` in Design, `tb_counter_fsm.v` in Testbench, Run — expect `PASS: 16 checks, 0 errors` in the log. Local fallback: `make` (Icarus).
 
+> Naming trap, found by testing (Nov 23, 2026): the check task here
+> was first called `expect` — legal in Verilog, but `expect` is a
+> reserved word in SystemVerilog, so Xcelium refused to compile it
+> (`*E,MISEXX ... expecting an '=' or '<=' sign`). It is now
+> `check_state`. Never name a task/function after a SystemVerilog
+> keyword, even if your current simulator accepts it.
+
 ## Try this
 
 1. The testbench checks `count` *after* each edge with a `#1` delay.

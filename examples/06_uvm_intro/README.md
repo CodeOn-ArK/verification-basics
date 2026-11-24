@@ -28,6 +28,13 @@ independent model) is exactly the one from example 01.
 
 Primary: EDA Playground with Cadence Xcelium and the UVM 1.2 library
 selected (see `../../docs/07_eda_playground.md` for the per-file setup).
+One EDA Playground quirk, verified Nov 23, 2026: only `design.sv` and
+`testbench.sv` are passed to the simulator, so add
+`` `include "adder_pkg.sv" `` as the first line of the testbench file —
+otherwise Xcelium fails with `Package adder_pkg could not be bound`.
+Put the interface + DUT in `design.sv`, the package and class files in
+extra file tabs, and `tb_top.sv` (with that include line) in the
+testbench window.
 
 It also runs on any UVM-capable simulator (Questa, VCS, Xcelium;
 Verilator does not ship UVM):

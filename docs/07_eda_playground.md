@@ -51,7 +51,17 @@ investigate — see [docs/05_debugging.md](05_debugging.md).
 | 03 FIFO scoreboard | `sync_fifo.v` | `tb_sync_fifo.v` | — (`fifo_txn_sv.sv` is reference-only SV class code, don't paste it) |
 | 04 SVA | `../03_sync_fifo_scoreboard/sync_fifo.v` (or the APB DUT from 05) | `fifo_assertions.sv` / `apb_assertions.sv` + a testbench that instantiates the DUT | Assertions run in-simulation; also try the `cover` properties to check for vacuity |
 | 05 APB slave | `apb_slave.v` | `tb_apb_slave.v` | — |
-| 06 UVM intro | `adder_dut.sv`, `adder_if.sv`, `adder_pkg.sv` and the `adder_*.sv` classes | `tb_top.sv` | **UVM library: UVM 1.2** (or IEEE 1800.2-2017) — without it, `uvm_pkg` won't resolve |
+| 06 UVM intro | `adder_if.sv` + `adder_dut.sv` in `design.sv`; `adder_pkg.sv` and the `adder_*.sv` classes as extra file tabs | `tb_top.sv` **with `` `include "adder_pkg.sv" `` added as its first line** | **UVM library: UVM 1.2** (or IEEE 1800.2-2017) — without it, `uvm_pkg` won't resolve |
+
+> **Multi-file gotcha (verified Nov 23, 2026):** EDA Playground only
+> passes `design.sv` and `testbench.sv` to the simulator — extra file
+> tabs are *not* compiled on their own. They do sit in the run
+> directory, so a file can pull them in with `` `include ``. That is
+> why example 06 needs the `` `include "adder_pkg.sv" `` line at the
+> top of the testbench: without it Xcelium fails with
+> `*E,NOPBIND: Package adder_pkg could not be bound`. The package
+> itself `` `include ``s the class files, so one line pulls in the
+> whole environment.
 
 ## Things that bite on EDA Playground
 
